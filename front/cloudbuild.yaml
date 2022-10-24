@@ -1,12 +1,7 @@
 steps:
-  - name: gcr.io/cloud-builders/docker
+  - name: gcr.io/kaniko-project/executor:latest
     args:
-      - build
-      - -f
-      - front/Dockerfile
-      - -t
-      - asia-northeast1-docker.pkg.dev/$PROJECT_ID/jubilant-doodle/front:latest
-      - .
-
-images: 
-  - asia-northeast1-docker.pkg.dev/$PROJECT_ID/jubilant-doodle/front:latest
+      - --destination=asia-northeast1-docker.pkg.dev/$PROJECT_ID/jubilant-doodle/front:latest
+      - --dockerfile=front/Dockerfile
+      - --cache=true
+      - --cache-ttl=24h

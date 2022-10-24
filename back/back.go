@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/http/httputil"
 
 	"github.com/hsmtkk/jubilant-doodle/env"
 	"github.com/labstack/echo/v4"
@@ -32,5 +33,10 @@ func main() {
 
 // Handler
 func ping(c echo.Context) error {
+	reqBytes, err := httputil.DumpRequest(c.Request(), false)
+	if err != nil {
+		return fmt.Errorf("httputil.DumpRequest failed; %w", err)
+	}
+	fmt.Println(string(reqBytes))
 	return c.String(http.StatusOK, "pong")
 }
