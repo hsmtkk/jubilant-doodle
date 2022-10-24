@@ -61,6 +61,10 @@ class MyStack extends TerraformStack {
             env: [{
               name: 'DST_URL',
               value: back_run.status.get(0).url,
+            },
+            {
+              name: 'ENABLE_AUTH',
+              value: 'true',
             }],
             image: 'asia-northeast1-docker.pkg.dev/jubilant-doodle/jubilant-doodle/front:latest'
           }],
