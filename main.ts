@@ -28,7 +28,7 @@ class MyStack extends TerraformStack {
 
     const back_run = new google.CloudRunService(this, 'back_run', {
       location: default_location,
-      name: 'backrun',
+      name: 'back',
       template: {
         spec: {
           containers: [{
@@ -54,7 +54,7 @@ class MyStack extends TerraformStack {
 
     const front_allowed_run = new google.CloudRunService(this, 'front_allowed_run', {
       location: default_location,
-      name: 'backrun',
+      name: 'frontallowed',
       template: {
         spec: {
           containers: [{
@@ -78,7 +78,7 @@ class MyStack extends TerraformStack {
 
     const front_unallowed_run = new google.CloudRunService(this, 'front_unallowed_run', {
       location: default_location,
-      name: 'backrun',
+      name: 'frontunallowed',
       template: {
         spec: {
           containers: [{
