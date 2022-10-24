@@ -60,7 +60,7 @@ class MyStack extends TerraformStack {
           containers: [{
             env: [{
               name: 'DST_URL',
-              value: 'https://hogehoge',
+              value: back_run.status.get(0).url,
             }],
             image: 'asia-northeast1-docker.pkg.dev/jubilant-doodle/jubilant-doodle/front:latest'
           }],
@@ -84,7 +84,7 @@ class MyStack extends TerraformStack {
           containers: [{
             env: [{
               name: 'DST_URL',
-              value: 'https://hogehoge',
+              value: back_run.status.get(0).url,
             }],
             image: 'asia-northeast1-docker.pkg.dev/jubilant-doodle/jubilant-doodle/front:latest'
           }],
@@ -97,6 +97,14 @@ class MyStack extends TerraformStack {
       project: project_id,
       service: front_unallowed_run.name,
       policyData: public_policy.policyData,
+    });
+
+    new TerraformOutput(this, 'front_allowed_url', {
+      value: front_allowed_run.status.get(0).url,
+    });
+
+    new TerraformOutput(this, 'front_unallowed_url', {
+      value: front_unallowed_run.status.get(0).url,
     });
 
     new TerraformOutput(this, 'back_url', {
